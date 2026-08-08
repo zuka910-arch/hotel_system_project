@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hotel.views import dashboard
+from hotel.views import dashboard, toggle_clean_status
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dashboard, name='dashboard'),
+    path('toggle_clean/<int:room_id>/' , toggle_clean_status, name='toggle_clean'),
 ]

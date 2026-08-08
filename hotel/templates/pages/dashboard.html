@@ -22,6 +22,13 @@
                     {% else %} 
                         <span class="badge bg-warning text-dark">Sbarazzo</span> 
                     {% endif %}
+                    
+                    <form method="POST" action="{% url 'toggle_clean' room.id %}" class="d-inline ms-3">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            Cambia Stato
+                        </button>
+                    </form>
                 </div>
             </li>
         {% empty %}
