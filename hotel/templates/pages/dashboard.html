@@ -15,6 +15,12 @@
                     {% else %} 
                         <span class="badge bg-success me-2">Libera</span> 
                     {% endif %}
+                    <form method="POST" action="{% url 'toggle_occupancy' room.id %}" class="d-inline me-4">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-dark">
+                            Check In/Out
+                        </button>
+                    </form>
                     
                     Pulizia: 
                     {% if room.is_clean %} 
