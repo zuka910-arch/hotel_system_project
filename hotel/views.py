@@ -6,7 +6,19 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def dashboard(request):
     rooms = HotelRoom.objects.all()
-    return render(request, 'pages/dashboard.html', {'rooms': rooms})
+    
+    is_reception = request.user.groups.filter(name='Reception').exists()
+    is_housekeeping = request.user.groups.filter(name='Housekeeping').exists()
+    is_facchini = request.user.groups.filter(name='Facchini').exists()
+    
+    context = {
+        'rooms': rooms,
+        'is_reception': is_reception,
+        'is_housekeeping': is_housekeeping,
+        'is_facchini': is_facchini,
+    }
+    
+    return render(request, 'pages/dashboard.html', context)
 
 @login_required
 def toggle_clean_status(request, room_id):
