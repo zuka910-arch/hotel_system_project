@@ -26,6 +26,8 @@ class Ticket(models.Model):
     room = models.ForeignKey(HotelRoom, on_delete=models.CASCADE, related_name="tickets")
     informazione = models.TextField(verbose_name="Dettaglio")
     is_done = models.BooleanField(default=False, verbose_name="Completato")
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    resolved_at = models.DateTimeField(null=True, blank=True)
     
     reply = models.TextField(blank=True, null=True, verbose_name="Risposta")
 
